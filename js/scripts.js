@@ -10,7 +10,7 @@ document.getElementById('reset-button').addEventListener('click', reset());
 
 function reset() {
     document.getElementById('chat-box').innerHTML = '';
-    addMessage(initialPrompt, 'bot');
+    addMessage(randomGreeting, 'bot');
     threadId = '';
 };
 
