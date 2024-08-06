@@ -92,6 +92,6 @@ async function getBotResponse(userInput) {
     });
 
     const data = await response.json();
-    threadId = data.thread_id; // 새로운 스레드 ID 업데이트
+    threadId = data.thread_id; // 새로운 스레드 ID 업데이트  
     return data.choices[0].message.content.trim();
 }
