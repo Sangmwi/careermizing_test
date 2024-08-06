@@ -79,7 +79,7 @@ function addMessage(message, type) {
 }
 
 async function getBotResponse(userInput) {
-    const response = await fetch('https://my-ai-chatbot.herokuapp.com/api/send-message', { // Heroku 서버로 요청
+    const response = await fetch('https://careermizing.herokuapp.com/api/send-message', { // Heroku 서버로 요청
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
