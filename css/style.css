@@ -427,6 +427,14 @@ a:focus {
   width: 100%;
 }
 
+.slider_section .img-box2 img {
+  width: 70%;
+}
+
+.slider_section .img-box3 img {
+  width: 70%;
+}
+
 .slider_section .carousel_btn-box {
   position: absolute;
   bottom: 0;
