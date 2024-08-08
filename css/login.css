@@ -1,0 +1,71 @@
+/* #00c6a9 */
+
+h1 {text-align: center; margin:50px auto 10px;}
+h1 a {}
+h1 a img {width: 400px;}
+main {width: 600px; background: #ffffff; margin: 0 auto;}
+main #loginFrm {border-bottom: 1px solid #d2d2d2; margin-bottom: 20px; padding-bottom: 20px;}
+main #loginFrm fieldset {}
+main #loginFrm fieldset ul {}
+main #loginFrm fieldset ul li {}
+main #loginFrm fieldset ul .error {
+    display : none;
+}
+main #loginFrm fieldset ul .id_error {}
+main #loginFrm fieldset ul .pw_error {}
+main #loginFrm fieldset ul li span {}
+main #loginFrm fieldset ul li #id_bg {}
+main #loginFrm fieldset ul li #pw_bg {}
+main #loginFrm fieldset ul li span input {}
+main #loginFrm fieldset ul li span input[type=text] {
+    border:1px solid #aaa; 
+    color:#00c6a9; 
+    padding:10px 20px; 
+    display:block; 
+    text-align:center; 
+    margin-top:10px;
+    box-shadow: 0 1px 0 #818181;
+    width: 100%;
+}
+main #loginFrm fieldset ul li span input[type=password] {
+    border:1px solid #aaa; 
+    color:#00c6a9; 
+    padding:10px 20px; 
+    display:block; 
+    text-align:center; 
+    margin-top:10px;
+    box-shadow: 0 1px 0 #818181;
+    width: 100%;
+}
+main #loginFrm fieldset ul li .pw_show_hide {}
+main #loginFrm fieldset .btm {
+    display: flex; flex-flow: row nowrap;
+    padding: 15px 0; justify-content: space-between;
+    font-size: 0.9rem;
+}
+main #loginFrm fieldset .btm p {}
+main #loginFrm fieldset .btm p label {}
+main #loginFrm fieldset .btm p label input[name=login_y] {}
+main #loginFrm fieldset .btm p label span {}
+main #loginFrm fieldset .btm .idpw_search {}
+main #loginFrm fieldset #login_btn {
+    background: #00c6a9;
+    width: 100%;
+    color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 0 #008e78;
+}
+main .join_link {
+    border:1px solid #aaa; 
+    color:#00c6a9; 
+    padding:10px 20px; 
+    display:block; 
+    text-align:center; 
+    margin-top:10px;
+    box-shadow: 0 1px 0 #818181;
+}
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.8rem;
+}
