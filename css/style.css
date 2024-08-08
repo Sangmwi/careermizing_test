@@ -471,6 +471,8 @@ a:focus {
   background-color: #252525;
 }
 
+
+
 .heading_chat_container h2 {
   font-size: 2.5rem;
   font-weight: bold;
@@ -484,7 +486,9 @@ a:focus {
   margin-bottom: 100px;
   width: auto; /* 너비를 더 크게 설정 */
   max-width: 80%;
-  border: 10px solid #ddd;
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -525,7 +529,7 @@ a:focus {
 }
 
 #back-button:hover {
-  color: #5ef196;
+  color: #00c6a9;
 }
 
 
@@ -600,7 +604,7 @@ input[type="text"] {
 #send-button {
   padding: 10px 15px;
   border: none;
-  background-color: #00bc35;
+  background-color: #00c6a9;
   color: #fff;
   border-radius: 20px;
   cursor: pointer;
