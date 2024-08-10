@@ -120,7 +120,7 @@ async function getBotResponse(userInput) {
         body: JSON.stringify({
             model: 'gpt-4o-mini', // 사용할 모델을 지정
             messages: chatLog,
-            max_tokens: 250
+            max_tokens: 350
         })
     });
 
