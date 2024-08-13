@@ -3,7 +3,7 @@
 h1 {text-align: center; margin:50px auto 10px;}
 h1 a {}
 h1 a img {width: 400px;}
-main {width: 600px; background: #ffffff; margin: 0 auto;}
+main {width: flex; background: #ffffff; margin: 0 100px;}
 main #loginFrm {border-bottom: 1px solid #d2d2d2; margin-bottom: 20px; padding-bottom: 20px;}
 main #loginFrm fieldset {}
 main #loginFrm fieldset ul {}
