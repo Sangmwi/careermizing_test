@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #f4f4f4;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #4caf50;
+    width: 0;
+    transition: width 0.3s;
+}
+
+.progress-text {
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.question-container {
+    margin-top: 80px;
+}
+
+.question {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.question-number {
+    font-size: 18px;
+    color: #ff9800;
+}
+
+.choices label {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.tip-container {
+    margin-top: 20px;
+    background-color: #fff3cd;
+    padding: 15px;
+    border: 1px solid #ffeeba;
+    border-radius: 5px;
+    display: none;
+}
+
+.tip-container.active {
+    display: block;
+}
+
+.navigation {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #ccc;
+}

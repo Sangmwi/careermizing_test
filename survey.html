@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설문조사</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            justify-content: center; /* 페이지 가운데 정렬 */
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        /* 진행 상태 바 */
+        .progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 50%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #4682B4;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 0;
+            line-height: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* 질문 컨테이너 */
+        .question-container {
+            margin-top: 20px; /* 질문과 페이지 버튼 사이 간격 */
+            padding-top: 0px; /* 상단 간격을 줄이기 위해 값을 조정 */
+            max-width: 700px; /* 질문 컨테이너의 최대 너비 */
+            width: 100%; /* 화면에 맞게 조절 */
+            text-align: center; /* 가운데 정렬 */
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-text {
+            font-size: 20px;
+            margin-top: 1px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .choices {
+            display: flex;
+            justify-content: space-between; /* 선택지들을 한 줄에 배치 */
+            margin-top: 20px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .choice {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            text-align: center;
+            line-height: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .choice:hover {
+            background-color: #808080;
+        }
+
+        .selected {
+            background-color: #4682B4;
+            color: white;
+        }
+
+        .tips {
+            display: flex;
+            justify-content: space-between; /* 좌우로 팁을 배치 */
+            margin-bottom: 20px;
+            font-size: 10px;
+            color: gray;
+            width: 100%;
+        }
+
+        .tips span {
+            width: 45%; /* 각 팁의 너비를 45%로 설정하여 좌우에 고정된 너비 부여 */
+            word-wrap: break-word; /* 텍스트가 넘칠 경우 자동 줄바꿈 */
+            text-align: left; /* 텍스트가 왼쪽 정렬되도록 */
+        }
+
+        /* 페이지 버튼들 */
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center; /* 페이지 버튼들이 가운데에 오도록 설정 */
+        }
+
+        .pagination button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: #808080;
+            color: white;
+        }
+
+        .disabled {
+            background-color: #ddd;
+            pointer-events: none;
+        }
+
+        .scale-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 14px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 진행 상태 표시 -->
+<div class="progress-container">
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+        <div class="progress-text">0%</div>
+    </div>
+</div>
+
+<div id="survey-container"></div>
+
+<!-- 페이지 버튼들 -->
+<div class="pagination">
+    <button id="prev-page" onclick="goToPrevPage()">이전 페이지</button>
+    <button id="next-page" onclick="goToNextPage()">다음 페이지</button>
+</div>
+
+<script>
+    const questionsPerPage = 8;
+    let currentPage = 1;
+    let totalQuestions = 0;
+    let responses = JSON.parse(localStorage.getItem('responses')) || {};
+
+    // API 호출을 통해 질문 데이터 불러오기
+    fetch('https://www.career.go.kr/inspct/openapi/test/questions?apikey=931fe66b40ede365f1ab6e79ee1b8ba8&q=21')
+        .then(response => response.json())
+        .then(data => {
+            totalQuestions = data.RESULT.length;
+            renderQuestions(data.RESULT);
+            updateProgress();
+        });
+
+    // 페이지에 질문과 선택지 렌더링
+    function renderQuestions(questions) {
+        const container = document.getElementById('survey-container');
+        container.innerHTML = ''; // 페이지 초기화
+        const start = (currentPage - 1) * questionsPerPage;
+        const end = currentPage * questionsPerPage;
+
+        for (let i = start; i < end && i < questions.length; i++) {
+            const question = questions[i];
+            const questionElem = document.createElement('div');
+            questionElem.classList.add('question-container');
+
+            // 질문 텍스트 추가
+            questionElem.innerHTML = `
+                <p class="question-text">${i + 1}. ${question.question}</p>
+                <div class="tips">
+                    <span>${question.tip1Desc || ''}</span>
+                    <span>${question.tip2Desc || ''}</span>
+                </div>
+                <div class="choices" data-question-id="${question.qitemNo}">
+                    ${[1, 2, 3, 4, 5, 6, 7].map(choice => `
+                        <div class="choice ${responses[question.qitemNo] === choice ? 'selected' : ''}" data-choice="${choice}">
+                            ${choice}
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="scale-label">
+                    <span>전혀 그렇지 않다</span>
+                    <span>매우 그렇다</span>
+                </div>
+            `;
+
+            container.appendChild(questionElem);
+        }
+
+        // 선택지 클릭 이벤트 설정
+        document.querySelectorAll('.choice').forEach(choiceElem => {
+            choiceElem.addEventListener('click', function () {
+                const questionId = this.closest('.choices').getAttribute('data-question-id');
+                const choice = parseInt(this.getAttribute('data-choice'));
+                responses[questionId] = choice;
+                localStorage.setItem('responses', JSON.stringify(responses));
+                renderQuestions(questions); // 선택지가 다시 렌더링되도록 갱신
+                updateProgress(); // 선택 시 진행률 업데이트
+            });
+        });
+    }
+
+    // 진행 상태 업데이트
+    function updateProgress() {
+        const progressFill = document.querySelector('.progress-fill');
+        const progressText = document.querySelector('.progress-text');
+        const answeredQuestions = Object.keys(responses).length;
+        const percentage = Math.floor((answeredQuestions / totalQuestions) * 100);
+
+        // 진행률 업데이트
+        progressFill.style.width = `${percentage}%`;
+        progressText.textContent = `${percentage}%`;
+    }
+
+    // 다음 페이지로 이동
+    function goToNextPage() {
+        if (validatePage()) {
+            currentPage++;
+            fetch('https://www.career.go.kr/inspct/openapi/test/questions?apikey=931fe66b40ede365f1ab6e79ee1b8ba8&q=21')
+                .then(response => response.json())
+                .then(data => {
+                    renderQuestions(data.RESULT);
+                    updateProgress();
+                });
+        } else {
+            alert('모든 질문에 응답해야 합니다.');
+        }
+    }
+
+    // 이전 페이지로 이동
+    function goToPrevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            fetch('https://www.career.go.kr/inspct/openapi/test/questions?apikey=931fe66b40ede365f1ab6e79ee1b8ba8&q=21')
+                .then(response => response.json())
+                .then(data => {
+                    renderQuestions(data.RESULT);
+                    updateProgress();
+                });
+        }
+    }
+
+    // 현재 페이지에서 모든 질문에 응답했는지 확인
+    function validatePage() {
+        const start = (currentPage - 1) * questionsPerPage;
+        const end = currentPage * questionsPerPage;
+
+        for (let i = start; i < end; i++) {
+            if (!responses[i + 1]) { // 응답하지 않은 질문이 있을 경우 false
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+
+</body>
+</html>
