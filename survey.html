@@ -25,7 +25,7 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            height: 50px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -34,7 +34,7 @@
 
         .progress-bar {
             width: 50%;
-            height: 20px;
+            height:15px;
             background-color: #e0e0e0;
             border-radius: 10px;
             position: relative;
@@ -51,9 +51,10 @@
         .progress-text {
             position: absolute;
             width: 100%;
+            font-size: 13px;
             text-align: center;
             top: 0;
-            line-height: 20px;
+            line-height: 15px;
             color: white;
             font-weight: bold;
         }
@@ -64,6 +65,7 @@
             padding-top: 0px; /* 상단 간격을 줄이기 위해 값을 조정 */
             max-width: 700px; /* 질문 컨테이너의 최대 너비 */
             width: 100%; /* 화면에 맞게 조절 */
+            justify-self: center;
             text-align: center; /* 가운데 정렬 */
             background-color: white;
             padding: 20px;
@@ -111,15 +113,15 @@
             display: flex;
             justify-content: space-between; /* 좌우로 팁을 배치 */
             margin-bottom: 20px;
-            font-size: 10px;
+            font-size: 15px;
             color: gray;
             width: 100%;
         }
 
         .tips span {
-            width: 45%; /* 각 팁의 너비를 45%로 설정하여 좌우에 고정된 너비 부여 */
+            width: 35%; /* 각 팁의 너비를 45%로 설정하여 좌우에 고정된 너비 부여 */
             word-wrap: break-word; /* 텍스트가 넘칠 경우 자동 줄바꿈 */
-            text-align: left; /* 텍스트가 왼쪽 정렬되도록 */
+            text-align: center; /* 텍스트가 왼쪽 정렬되도록 */
         }
 
         /* 페이지 버튼들 */
@@ -290,6 +292,15 @@
         }
         return true;
     }
+
+    // 응답을 "문항번호=선택지" 형식으로 텍스트 변환
+    function convertResponsesToText() {
+    return Object.entries(responses)
+        .map(([questionId, choice]) => `${questionId}=${choice}`)
+        .join(' '); // 공백으로 구분
+}
+
+
 </script>
 
 </body>
