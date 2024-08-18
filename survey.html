@@ -164,6 +164,14 @@
             width: 100%;
         }
     </style>
+    <script>
+        //응답 초기화
+        window.onload = function() {
+        localStorage.removeItem('responses'); // 이전 응답 데이터를 지움
+    };
+    </script>
+
+
 </head>
 <body>
 
@@ -184,6 +192,8 @@
 </div>
 
 <script>
+
+
     const questionsPerPage = 8;
     let currentPage = 1;
     let totalQuestions = 0;
@@ -270,7 +280,6 @@
 
 
                 // 여기에 서버로 전송하는 코드나 응답 제출 후 처리 로직을 추가할 수 있음.
-                //1. data를 
 
 
 
