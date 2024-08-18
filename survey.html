@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>설문조사</title>
     <style>
+        :root {
+            --bold-color: #043660; /* 진한 글자 색상 */
+            --main-color: #1866a5; /* 주 색상 */
+            --secondary-color: #4682B4; /* 보조 색상 */
+            --text-color: #333; /* 텍스트 색상 */
+          }
         /* 기본 스타일 */
         body {
             font-family: Arial, sans-serif;
@@ -43,7 +49,7 @@
 
         .progress-fill {
             height: 100%;
-            background-color: #4682B4;
+            background-color: var(--main-color);
             width: 0%;
             transition: width 0.3s;
         }
@@ -63,7 +69,7 @@
         .question-container {
             margin-top: 20px; /* 질문과 페이지 버튼 사이 간격 */
             padding-top: 0px; /* 상단 간격을 줄이기 위해 값을 조정 */
-            max-width: 700px; /* 질문 컨테이너의 최대 너비 */
+            max-width: 600px; /* 질문 컨테이너의 최대 너비 */
             width: 100%; /* 화면에 맞게 조절 */
             justify-self: center;
             text-align: center; /* 가운데 정렬 */
@@ -74,7 +80,9 @@
         }
 
         .question-text {
+            width: 100%;
             font-size: 20px;
+            color: var(--bold-color);
             margin-top: 1px;
             margin-bottom: 30px;
             font-weight: bold;
@@ -100,19 +108,17 @@
             margin: 0 10px;
         }
 
-        .choice:hover {
-            background-color: #808080;
-        }
-
         .selected {
-            background-color: #4682B4;
+            background-color: var(--main-color);
             color: white;
         }
 
         .tips {
             display: flex;
             justify-content: space-between; /* 좌우로 팁을 배치 */
+            border-bottom: 1px solid #c7c7c7;
             margin-bottom: 20px;
+            padding-bottom: 10px;
             font-size: 15px;
             color: gray;
             width: 100%;
@@ -254,7 +260,24 @@
 
     // 다음 페이지로 이동
     function goToNextPage() {
-        if (validatePage()) {
+        // 마지막 페이지에서 "응답을 제출하시겠습니까?" 팝업창 표시
+        if (currentPage === Math.ceil(totalQuestions / questionsPerPage)) {
+            const confirmSubmit = confirm('응답을 제출하시겠습니까?');
+            if (confirmSubmit) {
+                const response_text = convertResponsesToText(); // 응답을 텍스트 형식으로 변환
+                console.log(response_text); // 응답 텍스트를 출력하거나 서버로 전송할 수 있음
+                alert('응답이 제출되었습니다.');
+
+
+                // 여기에 서버로 전송하는 코드나 응답 제출 후 처리 로직을 추가할 수 있음.
+                //1. data를 
+
+
+
+
+
+            }
+        } else if (validatePage()) {
             currentPage++;
             fetch('https://www.career.go.kr/inspct/openapi/test/questions?apikey=931fe66b40ede365f1ab6e79ee1b8ba8&q=21')
                 .then(response => response.json())
@@ -295,11 +318,10 @@
 
     // 응답을 "문항번호=선택지" 형식으로 텍스트 변환
     function convertResponsesToText() {
-    return Object.entries(responses)
-        .map(([questionId, choice]) => `${questionId}=${choice}`)
-        .join(' '); // 공백으로 구분
-}
-
+        return Object.entries(responses)
+            .map(([questionId, choice]) => `${questionId}=${choice}`)
+            .join(' '); // 공백으로 구분
+    }
 
 </script>
 
