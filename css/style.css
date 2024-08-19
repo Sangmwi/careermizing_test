@@ -432,15 +432,18 @@ a:focus {
 }
 
 .slider_section .img-box img {
+  margin-top: 50px;
   width: 100%;
 }
 
 .slider_section .img-box2 img {
-  width: 70%;
+  margin-top: 50px;
+  width: 90%;
 }
 
 .slider_section .img-box3 img {
-  width: 70%;
+  margin-top: 50px;
+  width: 90%;
 }
 
 .slider_section .carousel_btn-box {
@@ -943,7 +946,7 @@ input[type="text"] {
 
 .contact_section .form_container input {
   width: 100%;
-  border: 1px solid #00c6a9;
+  border: 1px solid var(--main-color);
   height: 50px;
   margin-bottom: 25px;
   padding-left: 15px;
@@ -953,19 +956,19 @@ input[type="text"] {
 }
 
 .contact_section .form_container input::-webkit-input-placeholder {
-  color: #00c6a9;
+  color: var(--main-color);
 }
 
 .contact_section .form_container input:-ms-input-placeholder {
-  color: #00c6a9;
+  color: var(--main-color);
 }
 
 .contact_section .form_container input::-ms-input-placeholder {
-  color: #00c6a9;
+  color: var(--main-color);
 }
 
 .contact_section .form_container input::placeholder {
-  color: #00c6a9;
+  color: var(--main-color);
 }
 
 .contact_section .form_container input.message-box {
@@ -977,14 +980,14 @@ input[type="text"] {
   text-transform: uppercase;
   display: inline-block;
   padding: 15px 65px;
-  background-color: #00c6a9;
+  background-color: var(--main-color);
   color: #ffffff;
   border-radius: 0;
   font-weight: bold;
 }
 
 .contact_section .form_container button:hover {
-  background-color: #00937d;
+  background-color: var(--bold-color);
 }
 
 .contact_section .img-box img {
@@ -1065,7 +1068,7 @@ input[type="text"] {
 
 .info_section .info_form form button {
   background-color: transparent;
-  color: #00c6a9;
+  color: var(--bold-color);
   margin-top: 15px;
   text-transform: uppercase;
   font-size: 15px;
@@ -1089,7 +1092,7 @@ input[type="text"] {
   left: 0;
   width: 15px;
   height: 15px;
-  background-color: #00c6a9;
+  background-color: var(--main-color);
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
@@ -1113,7 +1116,7 @@ input[type="text"] {
 }
 
 .info_section .info_links .info_links_menu a:hover, .info_section .info_links .info_links_menu a.active {
-  color: #00c6a9;
+  color: var(--main-color);
 }
 
 .info_section .info_post .post_box {
@@ -1192,7 +1195,7 @@ input[type="text"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #00c6a9;
+  color: var(--main-color);
   font-size: 24px;
   margin-right: 10px;
 }
