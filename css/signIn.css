@@ -1,9 +1,20 @@
-/* #00c6a9 */
+:root {
+    --bold-color: #303d87; /* 진한 글자 색상 */
+    --main-color: #6778CF; /* 주 색상 */
+    --secondary-color: #9cacff; /* 보조 색상 */
+    --text-color: #333; /* 텍스트 색상 */
+  }
 
 h1 {text-align: center; margin:50px auto 10px;}
 h1 a {}
 h1 a img {width: 400px;}
-main {width: flex; background: #ffffff; margin: 0 100px;}
+main {
+    width: 80%;
+    min-width: 300px;
+    max-width: 700px;
+    background: #ffffff; 
+    margin: 0 auto;
+}
 main #loginFrm {border-bottom: 1px solid #d2d2d2; margin-bottom: 20px; padding-bottom: 20px;}
 main #loginFrm fieldset {}
 main #loginFrm fieldset ul {}
@@ -19,7 +30,7 @@ main #loginFrm fieldset ul li #pw_bg {}
 main #loginFrm fieldset ul li span input {}
 main #loginFrm fieldset ul li span input[type=text] {
     border:1px solid #aaa; 
-    color:#00c6a9; 
+    color:var(--main-color); 
     padding:10px 20px; 
     display:block; 
     text-align:center; 
@@ -29,7 +40,7 @@ main #loginFrm fieldset ul li span input[type=text] {
 }
 main #loginFrm fieldset ul li span input[type=password] {
     border:1px solid #aaa; 
-    color:#00c6a9; 
+    color:var(--main-color); 
     padding:10px 20px; 
     display:block; 
     text-align:center; 
@@ -49,15 +60,15 @@ main #loginFrm fieldset .btm p label input[name=login_y] {}
 main #loginFrm fieldset .btm p label span {}
 main #loginFrm fieldset .btm .idpw_search {}
 main #loginFrm fieldset #login_btn {
-    background: #00c6a9;
+    background: var(--main-color);
     width: 100%;
     color: #fff;
     padding: 20px 0;
-    box-shadow: 0 2px 0 #008e78;
+    box-shadow: 0 2px 0 var(--bold-color);
 }
 main .join_link {
     border:1px solid #aaa; 
-    color:#00c6a9; 
+    color:var(--main-color); 
     padding:10px 20px; 
     display:block; 
     text-align:center; 

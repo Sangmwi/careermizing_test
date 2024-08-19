@@ -1,3 +1,11 @@
+:root {
+  --bold-color: #303d87; /* 진한 글자 색상 */
+  --main-color: #6778CF; /* 주 색상 */
+  --secondary-color: #9cacff; /* 보조 색상 */
+  --text-color: #333; /* 텍스트 색상 */
+}
+
+
 body {
   font-family: 'Roboto', sans-serif;
   color: #0c0c0c;
@@ -48,7 +56,7 @@ body {
 }
 
 .heading_container h2 span {
-  color: #00c6a9;
+  color: var(--main-color);
 }
 
 .heading_container.heading_center {
@@ -105,11 +113,11 @@ a:focus {
 }
 
 .header_section .header_top .contact_nav a i {
-  color: #00c6a9;
+  color: var(--main-color);
 }
 
 .header_section .header_bottom {
-  background-color: #00c6a9;
+  background-color: var(--main-color);
 }
 
 .header_section .header_bottom .container-fluid {
@@ -325,7 +333,7 @@ a:focus {
 }
 
 .slider_section .play_btn button {
-  background-color: #00c6a9;
+  background-color: var(--main-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -352,7 +360,7 @@ a:focus {
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: #00c6a9;
+  background-color: var(--main-color);
   opacity: 1;
   border-radius: 100%;
   -webkit-transform: translate(-50%, -50%);
@@ -403,7 +411,7 @@ a:focus {
 }
 
 .slider_section .detail-box h1 span {
-  color: #00c6a9;
+  color: var(--main-color);
 }
 
 .slider_section .detail-box p {
@@ -457,7 +465,7 @@ a:focus {
   position: unset;
   width: 50px;
   height: 50px;
-  background-color: #00c6a9;
+  background-color: var(--main-color);
   opacity: 1;
 }
 
@@ -529,7 +537,7 @@ a:focus {
 }
 
 #back-button:hover {
-  color: #00c6a9;
+  color: var(--main-color);
 }
 
 
@@ -604,7 +612,7 @@ input[type="text"] {
 #send-button {
   padding: 10px 15px;
   border: none;
-  background-color: #00c6a9;
+  background-color: var(--main-color);
   color: #fff;
   border-radius: 20px;
   cursor: pointer;
@@ -613,7 +621,7 @@ input[type="text"] {
 }
 
 #send-button:hover {
-  background-color: #94a254;
+  background-color: #f7ffd4;
 }
 
 #send-button:active {
