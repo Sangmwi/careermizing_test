@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerMizing 회원가입</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        
+        .container img {
+            display: block;
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #7986CB;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #5C6BC0;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .checkbox-container input {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="./images/logo.png" alt="unknown">
+        <form>
+            <input type="text" placeholder="성명" required>
+            <input type="email" placeholder="이메일" required>
+            <input type="password" placeholder="비밀번호" required>
+            <input type="password" placeholder="비밀번호 확인" required>
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">이용약관에 동의합니다</label>
+            </div>
+            <input type="submit" value="회원가입">
+        </form>
+    </div>
+</body>
+</html>
